@@ -2,6 +2,9 @@
 
 All notable changes to Hush Chat.
 
+## v2.7.3
+- **Owner & admin can screenshot freely** — accounts with the owner or admin role are exempt from screenshot blocking: no secure flag, no consent prompt, no 15-second window. Everyone else stays screenshot-protected by default. The role is picked up on login and refreshed live, so a promotion takes effect without reinstalling.
+
 ## v2.7.2
 - **Crash fix** — fixed a crash on launch/resume on some Android 14+ phones. The new screenshot-attempt detection needs the `DETECT_SCREEN_CAPTURE` permission, which wasn't declared; that call is now also wrapped so it can never crash the app if a ROM gates it. Screenshot blocking itself was unaffected.
 
