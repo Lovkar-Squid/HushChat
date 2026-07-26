@@ -2,6 +2,9 @@
 
 All notable changes to Hush Chat.
 
+## v2.7.2
+- **Crash fix** — fixed a crash on launch/resume on some Android 14+ phones. The new screenshot-attempt detection needs the `DETECT_SCREEN_CAPTURE` permission, which wasn't declared; that call is now also wrapped so it can never crash the app if a ROM gates it. Screenshot blocking itself was unaffected.
+
 ## v2.7.1
 - **Desktop screenshot protection** — the Windows app now blocks screenshots and screen-recording of its window by default (via `SetWindowDisplayAffinity` / `WDA_EXCLUDEFROMCAPTURE`), matching the phone. The same consent flow applies: use "Ask to screenshot" and, once the other person approves, the window becomes capturable for 15 seconds. (It can't stop a photo of the monitor, and there's no auto-detect of attempts on desktop — the request is manual.)
 
