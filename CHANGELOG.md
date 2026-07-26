@@ -2,6 +2,9 @@
 
 All notable changes to Hush Chat.
 
+## v2.7.4
+- **Desktop fix** — fixed a blank white window that could appear on the Windows app while it ran in the background. The screenshot-capture setting is no longer re-applied redundantly (it was forcing a repaint on the backgrounded window that stayed white until refocused). The role check also stops hammering the server.
+
 ## v2.7.3
 - **Owner & admin can screenshot freely** — accounts with the owner or admin role are exempt from screenshot blocking: no secure flag, no consent prompt, no 15-second window. Everyone else stays screenshot-protected by default. The role is picked up on login and refreshed live, so a promotion takes effect without reinstalling.
 
