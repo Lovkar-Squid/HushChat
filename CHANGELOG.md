@@ -2,6 +2,13 @@
 
 All notable changes to Hush Chat.
 
+## v2.7.0
+- **Photo/media captions** — type a message while a photo (or file) is staged and it's sent as a caption underneath the media, in one encrypted message.
+- **Smoother images** — sent images no longer lag or flicker: media bytes are decoded once and reused instead of on every refresh.
+- **Screenshots blocked by default** — the app is screenshot-protected out of the box (FLAG_SECURE), including in the recents switcher, with no setting to silently turn it off.
+- **Screenshot consent + 15-second window** — to capture, tap "Ask to screenshot" (or, on Android 14+, your phone's screenshot attempt triggers it). The other person gets an inline Allow / Deny card; on Allow you get a 15-second window with a countdown, then it re-locks. No screenshot is possible without the other person's approval.
+- **Add friends by exact handle only** — the add-friend search no longer reveals people from a couple of letters; you must know someone's exact handle to add them.
+
 ## v2.6.0
 Messaging polish + a security pack.
 - **Typing indicators** — see when the other person (or a group member) is typing, sent ephemerally inside the E2EE channel (never stored).
