@@ -2,6 +2,17 @@
 
 All notable changes to Hush Chat.
 
+## v2.6.0
+Messaging polish + a security pack.
+- **Typing indicators** — see when the other person (or a group member) is typing, sent ephemerally inside the E2EE channel (never stored).
+- **Edit & delete messages** — long-press your own message to edit it or delete it for everyone; edits show an "edited" tag and deletes leave a "message was deleted" placeholder on both sides.
+- **Forward** — long-press any message to forward it to another chat or group; the content is re-encrypted to the new recipient.
+- **File attachments** — send any file (PDF, docs, archives…) up to 20 MB, encrypted end-to-end like everything else; tap a received file to save & open it.
+- **App lock** — optional PIN or biometric lock that hides the app on every resume. The PIN is stored only as a salted PBKDF2 hash.
+- **Block screenshots** — Android FLAG_SECURE toggle that blocks screenshots/recording and hides the app in the recents switcher.
+- **Block user** — stop all messages and calls between you and someone, in both directions; unblock any time.
+- **Registration lock** — set a PIN that's required to link a *new* device to your account, so a stolen password alone can't hijack it.
+
 ## v2.5.0
 - **Voice calls** — tap the phone icon in a direct chat to start an end-to-end encrypted voice call. Media is DTLS-SRTP encrypted by WebRTC, and the call setup (SDP/ICE) travels *inside* the encrypted message envelope, so the server only relays it and never sees it. Runs over your own self-hosted TURN/STUN (coturn) — no third-party servers. Includes an incoming-call screen (accept/decline), in-call timer, mute, and speaker toggle.
 - **Incoming calls ring even when the app is closed** — a high-priority "Incoming call" push (via your self-hosted ntfy) wakes the phone; tap it to answer.
