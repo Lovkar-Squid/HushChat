@@ -2,6 +2,11 @@
 
 All notable changes to Hush Chat.
 
+## v2.5.0
+- **Voice calls** — tap the phone icon in a direct chat to start an end-to-end encrypted voice call. Media is DTLS-SRTP encrypted by WebRTC, and the call setup (SDP/ICE) travels *inside* the encrypted message envelope, so the server only relays it and never sees it. Runs over your own self-hosted TURN/STUN (coturn) — no third-party servers. Includes an incoming-call screen (accept/decline), in-call timer, mute, and speaker toggle.
+- **Incoming calls ring even when the app is closed** — a high-priority "Incoming call" push (via your self-hosted ntfy) wakes the phone; tap it to answer.
+- Works on Android and Windows desktop.
+
 ## v2.4.3
 - **Fixed replies** — a reply now shows the message it's replying to (quoted) on both sides, instead of just saying "message". Reply/reaction targets now use the shared message id so they resolve on every device.
 - **Fixed reactions** — reactions now attach to the correct message across devices.
