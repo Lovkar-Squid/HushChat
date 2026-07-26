@@ -1,37 +1,43 @@
 # Hush Chat
 
-**A self-hosted, invite-only, end-to-end encrypted messenger for you and your friends** — built to stay private and *chat-control-proof*. Runs on **Windows, Linux, and Android** (no iOS).
+**A private, invite-only, end-to-end encrypted messenger for you and your friends** — built to stay private and *chat-control-proof*. Runs on **Windows, Linux, and Android** (no iOS).
 
-Your server stores only ciphertext and public keys — a zero-knowledge relay. No phone number, no email harvesting, no ads, no data mining.
+No phone number. No email harvesting. No ads. No data mining. Messages are end-to-end encrypted, so no one in the middle can read them.
 
 ---
 
-## ✨ Features
+## 💬 Join the community
 
-- **Invite-only** — no open sign-ups. New accounts need an invite code from an existing member.
-- **Friend system** (Discord-style) — add by handle → request → accept. You only see your friends, not every user.
-- **Direct messages + group chats** with live delivery (messages, friends, and groups appear without reopening the app).
-- **Read receipts** — sent ✓ / delivered ✓✓ / seen, plus online + last-seen presence.
-- **Roles** — Owner, Admin, Moderator, VIP, Member, with per-role invite quotas.
-- **Push notifications when the app is closed** via **self-hosted UnifiedPush + ntfy** — no Google, no Firebase.
-- **Local message history** that survives restarts.
-- **Web admin dashboard ("Manager")** — manage users, invites (incl. role-granting codes), passwords, roles, bans, and groups.
-- **Themes** — including a neon cyber look.
-- **WAN access** over your own domain with HTTPS (Let's Encrypt).
+Questions, help, and release news live in our Discord:
 
-## 🧩 Stack
+**➡️ https://discord.gg/bfS674hZ**
 
-- **Client:** Flutter (Android + Windows/Linux desktop)
-- **Backend:** FastAPI + PostgreSQL, WebSocket relay
-- **Push:** self-hosted [ntfy](https://ntfy.sh) via UnifiedPush
-- Deployed as a container app on a home server.
+---
 
-## 📦 Downloads
+## ✨ What you get
 
-Grab the latest **Android APK** and **Windows installer** from the [Releases](../../releases) page.
+- **Invite-only** — you join with an invite code from a friend. No open sign-ups, no strangers.
+- **Friends, your way** — add people by handle, send a request, and only chat with people you've added.
+- **Direct messages & group chats** — start a one-on-one or spin up a group.
+- **Send photos** 📷 — share images right in the chat.
+- **Read receipts & presence** — see sent / delivered / seen, plus who's online and when they were last around.
+- **Notifications even when the app is closed** — get pinged for new messages without keeping the app open, all through a private push channel (no Google/Firebase).
+- **Your history stays on your device** — messages persist locally between restarts.
+- **Themes** — including a slick neon cyber look.
 
-> Hush Chat is for private use among people who trust each other. Only invite people you truly trust, and never share the app or your invite codes with strangers.
+## 📦 Download
 
-## 📜 License
+Get the latest **Android APK** and **Windows installer** from the [Releases](../../releases) page.
 
-MIT.
+- **Android:** download the APK and install it (you may need to allow installs from your browser/files).
+- **Windows:** download the installer and run it.
+
+Then open the app, register with your **invite code**, pick a handle, and you're in.
+
+## 🔒 A note on privacy & trust
+
+Hush Chat is a private space for people who trust each other. **Only invite people you truly trust**, keep your invite codes to yourself, and don't share the app with strangers. Respect other people's privacy — don't screenshot or forward others' messages.
+
+## 📄 License
+
+[MIT](LICENSE).
