@@ -2,6 +2,9 @@
 
 All notable changes to Hush Chat.
 
+## v2.8.0
+- **Group voice calls** — tap the call icon in a group to start an end-to-end encrypted group call. It's a full peer-to-peer mesh (each person connects directly to every other) over your own self-hosted TURN/STUN, so the server never hears the audio. Members get an "Incoming group call" ring (even when the app is closed), an accept/decline screen, a live participant grid showing who's connected, and mute / speaker / leave controls. People can drop in and out and the mesh re-wires itself.
+
 ## v2.7.4
 - **Desktop fix** — fixed a blank white window that could appear on the Windows app while it ran in the background. The screenshot-capture setting is no longer re-applied redundantly (it was forcing a repaint on the backgrounded window that stayed white until refocused). The role check also stops hammering the server.
 
