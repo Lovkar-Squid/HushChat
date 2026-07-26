@@ -2,6 +2,14 @@
 
 All notable changes to Hush Chat.
 
+## v2.2.0
+- **New app icon** across phone and desktop.
+- **Verify a contact** — compare a Signal safety number to confirm no one is intercepting the chat (open a chat → ⋮ → *Verify security code*).
+- **Tap a photo to enlarge** it with pinch-to-zoom, plus a **download** button that saves to your gallery (phone) or Downloads (desktop).
+- **No more constant "Listening for messages" notification** on Android — background delivery now runs purely through the private push channel.
+- **Manager** shows a **Roles & Permissions** legend.
+- Settings shows the current app version, and desktop Settings has a **Check for updates** button.
+
 ## v2.1.1
 - **Desktop in-app updater** — the desktop app now downloads and installs updates itself, with a progress bar, then relaunches. No more manual download.
 
