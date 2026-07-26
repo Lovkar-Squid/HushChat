@@ -2,6 +2,9 @@
 
 All notable changes to Hush Chat.
 
+## v2.7.1
+- **Desktop screenshot protection** — the Windows app now blocks screenshots and screen-recording of its window by default (via `SetWindowDisplayAffinity` / `WDA_EXCLUDEFROMCAPTURE`), matching the phone. The same consent flow applies: use "Ask to screenshot" and, once the other person approves, the window becomes capturable for 15 seconds. (It can't stop a photo of the monitor, and there's no auto-detect of attempts on desktop — the request is manual.)
+
 ## v2.7.0
 - **Photo/media captions** — type a message while a photo (or file) is staged and it's sent as a caption underneath the media, in one encrypted message.
 - **Smoother images** — sent images no longer lag or flicker: media bytes are decoded once and reused instead of on every refresh.
