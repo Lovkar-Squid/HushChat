@@ -1,98 +1,74 @@
 # Changelog
 
-All notable changes to Hush Chat.
+All notable changes to Hush Chat. Newest first.
 
-## v2.8.0
-- **Group voice calls** — tap the call icon in a group to start an end-to-end encrypted group call. It's a full peer-to-peer mesh (each person connects directly to every other) over your own self-hosted TURN/STUN, so the server never hears the audio. Members get an "Incoming group call" ring (even when the app is closed), an accept/decline screen, a live participant grid showing who's connected, and mute / speaker / leave controls. People can drop in and out and the mesh re-wires itself.
+## v2.14.2
 
-## v2.7.4
-- **Desktop fix** — fixed a blank white window that could appear on the Windows app while it ran in the background. The screenshot-capture setting is no longer re-applied redundantly (it was forcing a repaint on the backgrounded window that stayed white until refocused). The role check also stops hammering the server.
+- **Reporting a voice message** now attaches the audio itself, so staff can play it back in the Manager (images were already attached this way). Reported voice notes show up as an audio player on the report card.
+- **Security hardening (server):** report evidence is now strictly validated to be an image/audio data URL before it's stored, and the Manager only renders evidence that passes the same check — closing a stored-XSS path where a crafted report could have run code in the Manager. Usernames are also restricted to a safe character set at registration.
 
-## v2.7.3
-- **Owner & admin can screenshot freely** — accounts with the owner or admin role are exempt from screenshot blocking: no secure flag, no consent prompt, no 15-second window. Everyone else stays screenshot-protected by default. The role is picked up on login and refreshed live, so a promotion takes effect without reinstalling.
+## v2.14.1
 
-## v2.7.2
-- **Crash fix** — fixed a crash on launch/resume on some Android 14+ phones. The new screenshot-attempt detection needs the `DETECT_SCREEN_CAPTURE` permission, which wasn't declared; that call is now also wrapped so it can never crash the app if a ROM gates it. Screenshot blocking itself was unaffected.
+- **Desktop: right-click a message** to open its menu (reply, react, pin, forward, report…) instead of long-pressing. This also makes **reporting a message work on desktop**, which wasn't reachable before.
+- Help & Tutorials: added a "Report a user, group or message" guide (with desktop right-click steps).
 
-## v2.7.1
-- **Desktop screenshot protection** — the Windows app now blocks screenshots and screen-recording of its window by default (via `SetWindowDisplayAffinity` / `WDA_EXCLUDEFROMCAPTURE`), matching the phone. The same consent flow applies: use "Ask to screenshot" and, once the other person approves, the window becomes capturable for 15 seconds. (It can't stop a photo of the monitor, and there's no auto-detect of attempts on desktop — the request is manual.)
+## v2.14.0
 
-## v2.7.0
-- **Photo/media captions** — type a message while a photo (or file) is staged and it's sent as a caption underneath the media, in one encrypted message.
-- **Smoother images** — sent images no longer lag or flicker: media bytes are decoded once and reused instead of on every refresh.
-- **Screenshots blocked by default** — the app is screenshot-protected out of the box (FLAG_SECURE), including in the recents switcher, with no setting to silently turn it off.
-- **Screenshot consent + 15-second window** — to capture, tap "Ask to screenshot" (or, on Android 14+, your phone's screenshot attempt triggers it). The other person gets an inline Allow / Deny card; on Allow you get a 15-second window with a countdown, then it re-locks. No screenshot is possible without the other person's approval.
-- **Add friends by exact handle only** — the add-friend search no longer reveals people from a couple of letters; you must know someone's exact handle to add them.
+- **Temporary bans** — when banning a user in the Manager you now choose a duration (1 hour, 1 day, 7 days, 30 days, or permanent). The app shows the banned person a "you're banned — time remaining" notice, and the ban lifts automatically when it expires. The Manager shows the time left on each banned user.
+- **Admins can manage invites** — admins can now create and revoke invite codes and set a user's invite count in the Manager, the same as the owner. (Deleting/renaming users, password resets, roles and group management remain owner-only.)
 
-## v2.6.0
-Messaging polish + a security pack.
-- **Typing indicators** — see when the other person (or a group member) is typing, sent ephemerally inside the E2EE channel (never stored).
-- **Edit & delete messages** — long-press your own message to edit it or delete it for everyone; edits show an "edited" tag and deletes leave a "message was deleted" placeholder on both sides.
-- **Forward** — long-press any message to forward it to another chat or group; the content is re-encrypted to the new recipient.
-- **File attachments** — send any file (PDF, docs, archives…) up to 20 MB, encrypted end-to-end like everything else; tap a received file to save & open it.
-- **App lock** — optional PIN or biometric lock that hides the app on every resume. The PIN is stored only as a salted PBKDF2 hash.
-- **Block screenshots** — Android FLAG_SECURE toggle that blocks screenshots/recording and hides the app in the recents switcher.
-- **Block user** — stop all messages and calls between you and someone, in both directions; unblock any time.
-- **Registration lock** — set a PIN that's required to link a *new* device to your account, so a stolen password alone can't hijack it.
+## v2.13.0
 
-## v2.5.0
-- **Voice calls** — tap the phone icon in a direct chat to start an end-to-end encrypted voice call. Media is DTLS-SRTP encrypted by WebRTC, and the call setup (SDP/ICE) travels *inside* the encrypted message envelope, so the server only relays it and never sees it. Runs over your own self-hosted TURN/STUN (coturn) — no third-party servers. Includes an incoming-call screen (accept/decline), in-call timer, mute, and speaker toggle.
-- **Incoming calls ring even when the app is closed** — a high-priority "Incoming call" push (via your self-hosted ntfy) wakes the phone; tap it to answer.
-- **Safety numbers now match across devices** — the verification code (⋮ → Verify security code) is computed over *all* of a user's device identity keys, so it's identical on both sides even when someone uses more than one device (phone + desktop).
-- **No stray empty bubbles** — control messages (call setup, reactions, wipe requests) are never drawn as blank message bubbles, including on desktop during a call.
-- Works on Android and Windows desktop.
+- **Report a group** — report a whole group (reason, description, evidence) from the group's options.
+- **Report a specific message or image** — long-press a message → Report. Since screenshots are blocked, the offending message text or image is captured automatically and attached to the report for staff to review.
+- **Admin-scoped Manager** — admins now sign in to the Manager with their own Hush Chat account (no shared key) and get a reduced set of tools: handle reports, ban/unban users, and grant/deny role requests. Everything else (invites, deleting/renaming users, password resets, roles, group management) stays owner-only. The owner keeps full access via the admin key.
+- **Automatic update checks** — the app checks for a newer version by itself while it's open or in the background and notifies you when one is available, with a tap-to-update banner on the chat list.
+- Manager: reports now cover users, groups, and messages (with the reported message shown inline).
 
-## v2.4.3
-- **Fixed replies** — a reply now shows the message it's replying to (quoted) on both sides, instead of just saying "message". Reply/reaction targets now use the shared message id so they resolve on every device.
-- **Fixed reactions** — reactions now attach to the correct message across devices.
-- **Fixed chat lag** — history is saved with a debounce (rapid reactions/receipts/messages coalesce into one write) and the view only auto-scrolls on new messages, so reacting and scrolling stay smooth even with photos in the chat.
+## v2.12.0
 
-## v2.4.2
-- **Desktop fix** — the conversation options panel (⋮ → mute / disappearing / clear chat / remove friend) now scrolls and is height-capped, so all options are reachable even when the window isn't maximized.
+Role perks that were staged in v2.11.0 are now fully working, plus an in-app help guide.
 
-## v2.4.1
-- **Clear-for-everyone is now inline** — instead of a system popup, the request appears as a card *inside the conversation* with **Yes / No** buttons right there. The asker sees a "waiting for everyone to agree" note in the same chat; once everyone accepts it clears for all, and a No cancels it for everyone.
-- **Manager: connect two users as friends** — admins can pick any two people in the Manager (USERS → *Connect 2 as friends*) and link them so they can message each other, without either sending a request.
-- **Remove friend** — a conversation's ⋮ menu now has *Remove friend* (unfriend), which clears the friendship on both sides.
+- **Animated GIF avatar (VIP+)** — use a moving GIF (up to 2 MB) as your profile picture.
+- **VIP message accent (VIP+)** — your username shows in your role colour and your chat bubbles get a matching highlighted border, in both direct and group chats.
+- **Profile banner (Supporter+)** — add a banner image to the top of your profile.
+- **Broadcast (Supporter+)** — send one message privately to all of your friends at once from the chat-list menu.
+- **Recurring scheduled messages (Supporter+)** — schedule a message to auto-send Daily or Weekly, not just once.
+- **Custom app icon (Supporter+)** — switch the Android launcher icon between Default, Gold and Crimson from Settings.
+- **Help & Tutorials** — a new searchable in-app guide (Settings → Help) explaining scheduled messages, hidden chats, decoy/panic PINs, disappearing messages, verifying contacts, and every role perk. The guide adapts to the platform (desktop shows click/right-click wording and hides phone-only items).
+- **Report a user** — report another user from their profile or the chat options: pick a reason, add an optional description, and attach evidence images. Reports appear in the Manager with actions to contact the reporter, resolve, dismiss, or ban the reported user.
+- **Manager** — the roles legend now includes a "Perks by tier" table listing what VIP+ and Supporter+ unlock, plus a new Reports panel.
 
-## v2.4.0
-- **Encrypted cross-device backup** — set a backup passphrase (Settings → *Chat Backup*) and your history is encrypted on-device (AES-256-GCM, PBKDF2) and stored on the server as ciphertext only. On another device, tap *Restore*, enter the same passphrase, and your chats come across. The server can never read them, and the passphrase never leaves your device.
-- **Clear chat** — from a conversation's ⋮ menu: *Clear for me only* (removes it from this device) or *Clear for everyone* (sends a yes/no request — in a group everyone present must agree — and once accepted it's deleted for all sides).
-- **Desktop auto-relaunch after update** — the installer now reopens Hush Chat automatically when a silent in-app update finishes.
+## v2.11.0
 
-## v2.3.0
-- **Voice messages** — tap the mic in the composer to record, then send. Delivered end-to-end encrypted like everything else, with an in-bubble player and progress bar.
-- **Reactions** — long-press any message to react with 👍 ❤️ 😂 😮 😢 🙏. Reactions ride *inside* the encrypted envelope, so the server never sees them.
-- **Reply** — long-press → *Reply* to quote a specific message. Works for text, photos, and voice notes, in both direct and group chats.
-- **Fix — "Delete after seen"** now waits until the recipient actually *leaves* the conversation, instead of vanishing the instant they open it.
-- **Invite screen** now shows your role and how many invites you have left (with a Copy button).
+- Role-exclusive perks framework: custom accent colour and exclusive themes (Aurora/Gold), 50 MB file sharing and unlimited pinned messages (VIP+); coloured username (Supporter+).
+- Pull-to-refresh on the chat list plus automatic refresh every minute.
 
-## v2.2.0
-- **New app icon** across phone and desktop.
-- **Verify a contact** — compare a Signal safety number to confirm no one is intercepting the chat (open a chat → ⋮ → *Verify security code*).
-- **Tap a photo to enlarge** it with pinch-to-zoom, plus a **download** button that saves to your gallery (phone) or Downloads (desktop).
-- **No more constant "Listening for messages" notification** on Android — background delivery now runs purely through the private push channel.
-- **Manager** shows a **Roles & Permissions** legend.
-- Settings shows the current app version, and desktop Settings has a **Check for updates** button.
+## v2.10.0
 
-## v2.1.1
-- **Desktop in-app updater** — the desktop app now downloads and installs updates itself, with a progress bar, then relaunches. No more manual download.
+- Privacy toggles: hide presence / last-seen, and turn off read receipts and typing indicator (VIP+).
+- Scheduled messages (send later).
+- Group profile (avatar + description) and per-contact profile view.
+- Archive and favourite chats.
+- Invites auto-revoke and are removed 2 hours after they expire.
+- Supporter role (between VIP and moderator) and refreshed Manager roles legend.
 
-## v2.1.0
-- **Mute conversations** — per person or group, for 15 min / 1 h / 8 h / 24 h, or until you turn it off. Muted chats stay silent everywhere (phone push, desktop beep + toast).
-- **Disappearing messages** — per conversation: *Keep in chat*, *Delete after 24 hours*, or *Delete after seen*. The setting applies to everyone in the chat.
-- **Photo preview before sending** — pick a photo and review it, then tap Send (no more instant send).
-- **Desktop notification sounds** — choose Cryptic, Blip, Chime, Pulse, Ping, or Silent in Settings.
-- Chat-list previews now show "📷 Photo" for images instead of raw data.
+## v2.9.1
 
-## v2.0.0
-- **Real end-to-end encryption** — the Signal protocol (X3DH + Double Ratchet). The server only ever relays ciphertext; it can't read messages.
-- **Send photos** — end-to-end encrypted images in direct and group chats.
-- **8 themes** — Cyber, Cute, Matrix, Hacker, Vaporwave, Blood, Midnight, and Default.
-- **In-app update alerts** — get notified when a newer version is available.
-- **Windows desktop app** — with a system-tray icon and close-to-tray (keeps receiving in the background until you quit).
-- **Private push notifications** when the app is fully closed — no Google/Firebase.
-- Server address baked in and hidden from users; login persists across restarts.
+- Fixed stealth PINs so the real, decoy and panic PINs all work together.
+- The server owner automatically gains owner/co-owner powers in every group.
 
-## v1.0.0
-- Initial release: invite-only accounts, direct and group messaging, friends, read receipts and presence, local message history, and a neon cyber theme.
+## v2.9.0
+
+- Group tools: roles, kick/ban, invite links, and polls.
+- Stealth & duress: decoy PIN, hidden chats, and panic wipe.
+- Profiles: avatar, display name and bio (E2EE relay).
+- Message search and pinned messages.
+- Typing indicators and type-only message previews.
+- Selectable call ringtones.
+
+## v2.8.1
+
+- Portrait orientation lock.
+
+Older releases: see the GitHub Releases page.
