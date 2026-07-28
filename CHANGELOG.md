@@ -2,6 +2,12 @@
 
 All notable changes to Hush Chat. Newest first.
 
+## v2.14.3
+
+- **Calls work from outside your home network again.** The relay server was telling callers to reach it at a local address, which only works on your own Wi‑Fi — so calls over mobile data rang, hung, and never connected. It now advertises its public address (and keeps it correct automatically if the internet provider changes it). This part is server-side, so it works without updating the app.
+- **Answered on one device, silent on the rest.** If you're signed in on several devices, picking up (or declining) a call now stops the ringing on the others instead of leaving them ringing.
+- **Chats that got stuck on "unable to decrypt" now repair themselves.** If the other person reinstalled the app, the secure session no longer matches and every later message from them failed to decrypt — permanently, because the app never rebuilt a session it already had. It now detects this and re-establishes the session. This also fixed calls silently failing, since call setup travels through the same encrypted channel.
+
 ## v2.14.2
 
 - **Reporting a voice message** now attaches the audio itself, so staff can play it back in the Manager (images were already attached this way). Reported voice notes show up as an audio player on the report card.
