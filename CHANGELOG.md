@@ -2,6 +2,12 @@
 
 All notable changes to Hush Chat. Newest first.
 
+## Unreleased (server-side)
+
+- **Per-admin two-factor.** Every staff member now enrols their own authenticator instead of sharing one code. On their first Manager sign-in they're given a setup key, and access is granted only once they confirm it with a working code. The owner can reset any admin's 2FA from the Manager if they lose their phone, which issues them a fresh key.
+- **Staff activity log.** The Manager records who did what and when — sign-ins, bans, role changes, invites, report handling — including failed attempts, so abuse can be traced. Readable action names, colour-coded by severity, searchable, and kept for 30 days. Passwords, keys and 2FA codes are never written to it. Owner-only.
+- **Automatic storage housekeeping.** Delivered messages are dropped from the server after 7 days (the apps keep their own copy) and undelivered ones after 30. Each account has a cap on how much undelivered mail can pile up for it, so nobody can fill the server's disk by sending media at an offline user. The Manager shows how much space each account uses.
+
 ## v2.14.3
 
 - **Calls work from outside your home network again.** The relay server was telling callers to reach it at a local address, which only works on your own Wi‑Fi — so calls over mobile data rang, hung, and never connected. It now advertises its public address (and keeps it correct automatically if the internet provider changes it). This part is server-side, so it works without updating the app.
