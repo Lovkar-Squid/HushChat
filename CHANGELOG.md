@@ -7,6 +7,7 @@ All notable changes to Hush Chat. Newest first.
 - **Reporting a voice message** now attaches the audio itself, so staff can play it back in the Manager (images were already attached this way). Reported voice notes show up as an audio player on the report card.
 - **Security hardening (server):** report evidence is now strictly validated to be an image/audio data URL before it's stored, and the Manager only renders evidence that passes the same check — closing a stored-XSS path where a crafted report could have run code in the Manager. Usernames are also restricted to a safe character set at registration.
 - **More server hardening (audit follow-up):** login, staff (Manager) login, and the registration-lock PIN are now rate-limited (a short cool-down after 10 wrong tries per account) to stop password/PIN brute-forcing; a request body-size ceiling was added to block oversized-payload abuse. These are server-side only — no app update needed. A full authorization/injection/IDOR sweep found no other exploitable issues.
+- **Manager: log out** — a Log out button in the Manager header clears the saved key/session and returns to the sign-in screen.
 
 ## v2.14.1
 
