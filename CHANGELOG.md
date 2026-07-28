@@ -10,6 +10,7 @@ All notable changes to Hush Chat. Newest first.
 - **Manager: log out** — a Log out button in the Manager header clears the saved key/session and returns to the sign-in screen.
 - **Fix — deleting a group in the Manager** returned HTTP 500 when the group had an active invite (or ban). Group deletion now clears the group's invites, bans, and retention/mute leftovers first, so it always succeeds.
 - **Manager hardened for public access:** wrong admin-key guesses are now rate-limited (previously unlimited), the key is compared in constant time, Manager sign-ins expire after 12 hours instead of 30 days, banned staff can no longer sign in, and the dashboard sends strict security headers (CSP, anti-framing, no-referrer, no-index). The rate limit deliberately can't be side-stepped by forging forwarded-IP headers, and a correct key is never locked out by someone else's guessing.
+- **Manager two-factor authentication (TOTP)** — the dashboard can now require a 6-digit code from an authenticator app (Google Authenticator, Authy…) on top of the owner key or staff password. With 2FA on, the key by itself no longer opens anything: it must be exchanged together with a code for a short-lived session. Long-lived phone app tokens can no longer be used to reach the Manager either, so 2FA can't be side-stepped.
 - **More hardening:** cross-origin browser access is now an explicit allow-list instead of "any site" (native apps are unaffected), and group avatars and encrypted backups have size ceilings so they can't be used to fill the server's disk.
 
 ## v2.14.1
